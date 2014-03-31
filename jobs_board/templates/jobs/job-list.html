@@ -1,0 +1,15 @@
+{% extends "jobs/base.html" %}
+{% from "foundation_wtf.html" import quick_form %}
+
+{% block content %}
+<div class="row">
+    <ul>
+    {% for job in jobs %}
+        <li><a href="{{ url_for('.job_detail', job_id=job.id) }}">{{ job }}</a></li>
+    {% else %}
+        <li>No jobs to display</li>
+    {% endfor %}
+    </ul>
+    {{ quick_form(form) }}
+</div>
+{% endblock %}

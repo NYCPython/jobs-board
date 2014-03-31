@@ -1,0 +1,35 @@
+{% extends "jobs/base.html" %}
+{% from "foundation_wtf.html" import quick_form %}
+
+{% block content %}
+<div class="row">
+    <div class="tabs vertical large-3 columns" data-tab>
+        <dd class="active"><a href="#all-companies">All</a></dd>
+        <dd><a href="#my-companies">Mine</a></dd>
+        <dd><a href="#bookmarks">Bookmarked</a></dd>
+    </div>
+    
+    <div class="tabs-content vertical">
+        <ul class="content active" id="all-companies">
+        {% for company in companies %}
+            <li><a href="{{ url_for('.company_detail', company_id=company.id) }}">{{ company }}</a></li>
+        {% else %}
+            <li>No companies to display</li>
+        {% endfor %}
+        </ul>
+
+        <ul class="content" id="my-companies">
+        {% for company in current_user.companies %}
+            <li><a href="{{ url_for('.company_detail', company_id=company.id) }}">{{ company }}</a></li>
+        {% else %}
+            <li>No companies to display</li>
+        {% endfor %}
+            {{ quick_form(form) }}
+        </ul>
+
+        <ul class="content" id="bookmarks">
+            This would be a nice feature
+        </ul>
+    </div
+</div>
+{% endblock %}

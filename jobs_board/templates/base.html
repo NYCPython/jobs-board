@@ -1,0 +1,40 @@
+{% extends "foundation_base.html" %}
+
+{% block title %}{{ title|default('Jobs') }}{% endblock %}
+
+{% block body_content %}
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="#">{{ title|default('Jobs') }}</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+
+    <section class="top-bar-section">
+        <ul class="right">
+            <li class="has-dropdown">
+                <a href="#">
+                    {% if current_user.is_authenticated() %}
+                        {{ current_user }}
+                    {% else %}
+                        Do stuff...
+                    {% endif %}
+                </a>
+                <ul class="dropdown">
+                    {% if current_user.is_authenticated() %}
+                        <li><a href="{{ url_for('security.logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('security.login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="top-bar-section">
+
+    </section>
+</nav>
+{% block content %}{% endblock %}
+{% endblock %}

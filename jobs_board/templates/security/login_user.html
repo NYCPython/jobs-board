@@ -1,0 +1,10 @@
+{% extends "security/base.html" %}
+{% from "foundation_wtf.html" import quick_form %}
+
+{% block content %}
+<div class="row">
+    <div class="large-4 columns large-offset-4 end">
+        {{ quick_form(login_user_form, action=url_for('security.login'), buttons=[]) }}
+    </div>
+</div>
+{% endblock %}
